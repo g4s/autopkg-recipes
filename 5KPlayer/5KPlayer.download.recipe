@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>Comment</key>
+	<string>Created with Recipe Robot v1.0.3 (https://github.com/homebysix/recipe-robot)</string>
+	<key>Description</key>
+	<string>Downloads the latest version of 5KPlayer.</string>
+	<key>Identifier</key>
+	<string>com.github.g4s.download.5KPlayer</string>
+	<key>Input</key>
+	<dict>
+		<key>DOWNLOAD_URL</key>
+		<string>http://dw.cbsi.com/redir?ttag=restart_download_click&amp;ptid=3001&amp;pagetype=product_pdl&amp;astid=2&amp;edid=3&amp;tag=link&amp;siteid=4&amp;destUrl=&amp;onid=13632&amp;oid=3001-13632_4-76423535&amp;rsid=cbsidownloadcomsite&amp;sl=en&amp;sc=us&amp;topicguid=video%2Fplayers&amp;topicbrcrm=&amp;pid=15286478&amp;mfgid=10428152&amp;merid=10428152&amp;ctype=dm&amp;cval=NONE&amp;devicetype=%3C!--esidesktop&amp;pguid=50219fef52d7d55c1cb178da&amp;viewguid=e-6oq2idLJId9hhuWvuyDC9v9ijaK9H25k8t&amp;destUrl=http%3A%2F%2Ffiles.downloadnow.com%2Fs%2Fsoftware%2F15%2F28%2F64%2F78%2F5kplayer.dmg%3Ftoken%3D1472230622_23e84ba4f61c4e4197ddfce61b621bab%26fileName%3D5kplayer.dmg</string>
+		<key>NAME</key>
+		<string>5KPlayer</string>
+	</dict>
+	<key>MinimumVersion</key>
+	<string>0.6.1</string>
+	<key>Process</key>
+	<array>
+		<dict>
+			<key>Arguments</key>
+			<dict>
+				<key>filename</key>
+				<string>%NAME%.dmg</string>
+				<key>url</key>
+				<string>%DOWNLOAD_URL%</string>
+			</dict>
+			<key>Processor</key>
+			<string>URLDownloader</string>
+		</dict>
+		<dict>
+			<key>Processor</key>
+			<string>EndOfCheckPhase</string>
+		</dict>
+		<dict>
+			<key>Arguments</key>
+			<dict>
+				<key>input_path</key>
+				<string>%pathname%/5KPlayer.app</string>
+				<key>requirement</key>
+				<string>anchor apple generic and identifier "com.digiarty.5kplayer" and (certificate leaf[field.1.2.840.113635.100.6.1.9] /* exists */ or certificate 1[field.1.2.840.113635.100.6.2.6] /* exists */ and certificate leaf[field.1.2.840.113635.100.6.1.13] /* exists */ and certificate leaf[subject.OU] = Q5K8LAV554)</string>
+			</dict>
+			<key>Processor</key>
+			<string>CodeSignatureVerifier</string>
+		</dict>
+		<dict>
+			<key>Arguments</key>
+			<dict>
+				<key>input_plist_path</key>
+				<string>%pathname%/5KPlayer.app/Contents/Info.plist</string>
+				<key>plist_version_key</key>
+				<string>CFBundleShortVersionString</string>
+			</dict>
+			<key>Processor</key>
+			<string>Versioner</string>
+		</dict>
+	</array>
+</dict>
+</plist>
